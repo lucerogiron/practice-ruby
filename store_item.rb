@@ -40,11 +40,11 @@ class Storeitem
   attr_reader :name, :color, :price, :size
   attr_writer :price
 
-  def initialize(name, color, price, size)
-    @name = name
-    @color = color
-    @price = price
-    @size = size
+  def initialize(specifications)
+    @name = specifications[:item_name]
+    @color = specifications[:item_color]
+    @price = specifications[:item_price]
+    @size = specifications[:item_size]
   end
 
   # def color
@@ -59,14 +59,19 @@ class Storeitem
   #   @size
   # end
 
-  # def price=(price)
-  #   @price = price
-  # end
+  def price=(price)
+    @price = price
+  end
+
+  def item_info
+    puts "#{item_name} is #{item_color} and comes in #{item_color}, it is being sold at #{item_price}"
+  end
 end
 
-item = Storeitem.new("denim_pants", "blue", 49.99, "medium")
+item = Storeitem.new(item_name: "Pikachu_Plushie", item_color: "iconic_yellow", item_price: 150.00)
 
+puts item.name
 puts item.color
-puts item.size
 item.price = 24.99
 puts item.price
+item.item_info
